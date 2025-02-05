@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="counter">0</div>
+
+    <button id="increment">increment</button>
+    <button id="decrement">decrement</button>
+</body>
+<script>
+
+let num = 0;
+
+const display = document.querySelector('#counter'); // id가 counter인 요소를 선택하여 display 변수에 저장
+const incrementBtn = document.querySelector('increment');
+const decrementBtn = document.querySelector('decrement');
+
+
+
+const increment = () => {
+    num += 1;
+    render();
+}
+
+const decrement = () => {
+    if(num > 0)  // 중괄호 없으면 유호 스코프가 바로 밑에줄만 유효
+    num -= 1;
+    render();
+    
+}
+
+const handler = (event) => {
+    // event.target
+    display.innerHTML = event.target.id === "increment" ? ++num : (num > 0 ? --num : num);
+}
+
+    // increment // 요소들 호출
+incrementBtn.onclick = handler;
+decrementBtn.onclick = handler;
+
+// const render = () => {
+//     display.innerHTML = num;
+// }
+
+console.log(new Date(1000));
+
+console.log(new Date('2025-01-21'));
+
+console.log(new Date().getFullYear());
+console.log(new Date().getMonth() + 1); // 0 ~ 11
+console.log(new Date().getDate()); // 일수는 그대로 1~
+console.log(new Date().getDay()); // 일요일 부터 0 ~ 6
+
+
+</script>
+</html>

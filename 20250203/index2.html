@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // a 변수에 1을 할당
+    const a = 1;
+    // 새로운 Promise를 생성하고 콜백 함수를 전달하여 매개변수를 받는데
+    // 첫 번째 매개변수에는 비동기 결과의 성공한 결과 값을 가진다
+    // 두 번째 매개변수에는 비동기 결과의 실패한 결과 값을 가진다
+    // Promise 객체는 then(), catch(), finally() 라는 메서드들을 제공하여 비동기 작업에 대한 후처리를 간편하게 할 수 있다.
+    const promise = new Promise((suc, fail) => {
+        if(a === 1) {
+          suc("성공")
+        } else {
+          fail("실패")
+        }
+    })
+    // 대기 상태가 끝나지 않으면 값이 정상적이지 않고 사용할 수 없다.
+    // promise에 then을 접근하면 then은 비동기 작업이 완료될 때까지 기다렸다가 promise 상태가 Fullfilled 상태로 바뀌면 
+    // then 안에다가 전달해준 콜백함수를 호출
+    // 콜백함수는 매개변수를 하나 받는데, 매개변수는 promise의 result를 담고 있다. 즉, resolve에 담긴 결과값이다.
+    // then() -  프로미스 결과가 성공적으로 처리되었을 때 실행할 콜백 함수
+    // catch() - 프로미스 결과가 실패로 처리되었을 때 실행할 콜백 함수
+    // fecth() - HTTP response 객체를 래핑한 Promise 객체를 반환한다. 
+    // promise.then((result) =>{
+    //     console.log(promise);
+    //     console.log(result);
+    // })
+    // .catch((error) => {
+    //  console.log(promise);
+    //    console.log(error);
+    // })
+    
+    const data = fetch('https://jsonplaceholder.typicode.com/posts/1');
+    console.log(data);
+    // 데이터를 가져올때까지 기다리고 사용
+    // Response - 응답 객체를 가져온다.
+    
+    data.then((result) =>{
+        // result.json() 데이터를 받아서 JSON 문자열을 받아서 Obj로 변환
+        result.json().then((result) => {
+            console.log(result);
+        })
+    });
+
+      promise.then((result) =>{
+        console.log(promise);
+        console.log(result);
+    }).catch((error) => {
+            console.log(result);
+            console.log(error);
+        })
+
+    
+</script>
+</html>
