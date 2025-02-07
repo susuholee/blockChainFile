@@ -134,6 +134,7 @@ let typingInterval = setInterval(typing, 200);
 
 // ---------------- 게시판 버튼을 눌렀을 때 --------// 
 document.querySelector('.post-btn').addEventListener('click', () => {
+
     // 모달창 생성
     const modal = document.createElement("div");
     modal.classList.add("modal");
@@ -233,6 +234,7 @@ document.querySelector('.post-btn').addEventListener('click', () => {
     }
     // 게시 버튼을 클릭했을 때 이벤트 함수
     commentButton.addEventListener("click", () => {
+    
         const comment = new Comment(
             data.length + 1, // index 번호
             commentTextarea.value, // 글을 입력한 내용
@@ -240,16 +242,16 @@ document.querySelector('.post-btn').addEventListener('click', () => {
             "이수호" // 작성자 이름
  );
      data.push(comment);
-      console.log(comment)
         const content_JSON = JSON.stringify(data);
         localStorage.setItem("comment", content_JSON);
 
-
-    
+    rander();
+    commentTextarea.value = "";
   })
 
   // READ 
   const rander = () => {
+    document.querySelector('.comment-section').innerHTML = "";
     for(let i = 0;  i < data.length; i++) {
       const ul = document.createElement("ul");
       const li_01 = document.createElement("li");
@@ -258,20 +260,24 @@ document.querySelector('.post-btn').addEventListener('click', () => {
       const li_04 = document.createElement("li");
       const li_05 = document.createElement("li");
       const deleteBtn = document.createElement("button");
+      deleteBtn.classList.add("deleteBtn");
+      deleteBtn.innerText = "삭제";
       const updateBtn = document.createElement("button");
+      updateBtn.classList.add("updateBtn");
+      updateBtn.innerText = "수정";
       ul.append(li_01, li_02, li_03, li_04, li_05);
       li_05.append(deleteBtn,updateBtn);
       // 키 값을 인덱스 배열로 구조분해 할당
       const { index, value, title, name } = data[i];
       li_01.innerHTML = index;
       li_02.innerHTML = value;
-      li_03.innerHTML = title
+      li_03.innerHTML = title;
       li_04.innerHTML = name;
   
 
       deleteBtn.onclick = () => deleteHandler(i);
       updateBtn.onclick = () => updateHandler(i);
-      document.querySelector('.content').append(ul);
+      document.querySelector('.comment-section').append(ul);
 
     }
   }
