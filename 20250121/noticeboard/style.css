@@ -1,4 +1,11 @@
 @font-face {
+    font-family: 'Gyeonggi_Batang_Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2410-3@1.0/Batang_Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'fontello';
     src: url('../font/fontello.eot?98096519');
     src: url('../font/fontello.eot?98096519#iefix') format('embedded-opentype'),
@@ -117,7 +124,6 @@
     border-bottom: 2px solid;
     border-color: darkgrey;
     background-color: rgb(255, 255, 255);
-    padding-top: 40px;
 }
 
 
@@ -177,9 +183,7 @@
 
 .comment-section {
     width: 100%;
-    height: 50px;
-    border-top: 3px solid;
-    margin-top: 400px;
+    height: 400px;
 }
 .image-container {
     width: 500px;
@@ -195,8 +199,79 @@
 
 }
 
+.comment-div {
+    display: flex;
+    justify-content: space-between;
+    border-top : 1px solid;
+    width: 100%;
+    height: 40px;
+}
 
+.comment-textarea {
+    font-family: 'Gyeonggi_Batang_Regular';
+    font-size: 20px;
+    display: flex;
+    resize: none;
+    width: 391.36px;
+    height: 30px;
+    background-color: rgb(255, 255, 255);
+    border-right-color : rgb(204, 208, 213);
+    border-image-slice : 100%;
+    border-top-color:  rgb(204, 208, 213);
+    border-top-style : none;
+    border-right-style: none;
+    border-right-color: rgb(204, 208, 213);
+    border-left-style: none;
+    border-left-color: rgb(204, 208, 213);
+    border-bottom-style: none;
+    border-bottom-color: rgb(204, 208, 213);
+    direction:  ltr;
+    cursor: text;
+    color: rgb(0, 0, 0);
+    color-scheme : light;
+    font-stretch :100%;
+    max-height :  80px;
+    max-width : 100%;
+    overflow-wrap : break-word;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing :normal;
+    text-align: start;
+    margin-top: 30px;
+}
 
+.comment-textarea:focus {
+    outline: none;
+}
+
+.commenButtonDiv {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    width: 100px;
+    height: 18px;
+}
+
+.comment-button {
+    width: 100px;
+    height: 50px;
+    background-color: #a1b8a2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    
+}
+
+.emoji {
+    padding: 30px;
+    background-image: url("./images/emoji.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 .box-image-1 {
     width: 400px; 
@@ -458,12 +533,12 @@ ul, li {
     background-image: url(./images/heart.png);
     background-size: cover;
     display: block;
-    width: 53px;
+    width: 50px;
     position: absolute;
-    top: 1px;
-    left: 1px;
+    top: 2px;
+    left: 2px;
     height: 50px;
-    z-index: 2;
+    z-index: 1;
     }
 
 .notice-icon:hover,
@@ -489,7 +564,7 @@ ul, li {
     overflow: hidden;
     position: relative;
     background-color: #f0f0f0; 
-    bottom: 11px;
+    bottom: 8px;
 }
 
 .mypage-icon::after {

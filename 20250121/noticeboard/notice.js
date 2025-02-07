@@ -1,4 +1,5 @@
 window.addEventListener('load', () => {
+
     const loadingScreen = document.getElementById('loading-screen');
     const logo = document.getElementById('logo');
     const metalogo = document.getElementById('meta-logo');
@@ -171,23 +172,47 @@ document.querySelector('.post-btn').addEventListener('click', () => {
     const commentSection = document.createElement("div");
     commentSection.classList.add("comment-section");
     
-    // 댓글을 입력하는 요소 생성
-    const commentInput = document.createElement("input");
-    commentInput.classList.add("comment-input");
+    const commentDiv = document.createElement("div");
+    commentDiv.classList.add("comment-div");
+
+    // 이모티콘 요소 div 생성
+    const emojiDiv = document.createElement("div");
+    emojiDiv.classList.add("emojidiv");
     
+    const emoji = document.createElement("img");
+    emoji.classList.add("emoji");
+    emoji.innerHTML = "";
+
+
+    // 댓글을 입력하는 요소 생성
+    const commentTextarea = document.createElement("textarea");
+    commentTextarea.classList.add("comment-textarea");
+    commentTextarea.placeholder = "댓글 달기..."
+    
+    const commentButtonDiv = document.createElement("div");
+    commentButtonDiv.classList.add("commenButtonDiv");
+
     // 댓글 등록 버튼 생성
     const commentButton = document.createElement("button");
     commentButton.classList.add("comment-button");
-    commentButton.innerText = "댓글 게시";
-    
-    // 댓글 섹션에 입력창과 버튼 추가
-    commentSection.appendChild(commentInput);
-    commentSection.appendChild(commentButton);
+    commentButton.innerText= "게시";
+
+
     
     leftSection.appendChild(image_tag);
     rightSection.appendChild(headerbar);
     rightSection.appendChild(commentSection); 
+    rightSection.appendChild(commentDiv);
     
+    commentDiv.appendChild(emojiDiv);
+    commentDiv.appendChild(commentTextarea);
+    commentDiv.appendChild(commentButton);
+    commentDiv.appendChild(commentButtonDiv);
+
+    commentButtonDiv.appendChild(commentButton);
+   
+    emojiDiv.appendChild(emoji);
+
     modalContent.appendChild(leftSection);
     modalContent.appendChild(rightSection);
     modalContent.appendChild(closeBtn);
@@ -195,15 +220,70 @@ document.querySelector('.post-btn').addEventListener('click', () => {
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
 
+    // Create 글을 추가하는 코드 // 
     let data = [];
-    
+
     class Comment {
         constructor(_index, _value, _title, _name) {
             this.index = _index;
             this.value = _value;
+            this.title = _title
             this.name = _name;
         }
     }
+    // 게시 버튼을 클릭했을 때 이벤트 함수
+    commentButton.addEventListener("click", () => {
+        const comment = new Comment(
+            data.length + 1, // index 번호
+            commentTextarea.value, // 글을 입력한 내용
+            "자바스크립트", // 제목 
+            "이수호" // 작성자 이름
+ );
+     data.push(comment);
+      console.log(comment)
+        const content_JSON = JSON.stringify(data);
+        localStorage.setItem("comment", content_JSON);
+
+
     
-    content
+  })
+
+  // READ 
+  const rander = () => {
+    for(let i = 0;  i < data.length; i++) {
+      const ul = document.createElement("ul");
+      const li_01 = document.createElement("li");
+      const li_02 = document.createElement("li");
+      const li_03 = document.createElement("li");
+      const li_04 = document.createElement("li");
+      const li_05 = document.createElement("li");
+      const deleteBtn = document.createElement("button");
+      const updateBtn = document.createElement("button");
+      ul.append(li_01, li_02, li_03, li_04, li_05);
+      li_05.append(deleteBtn,updateBtn);
+      // 키 값을 인덱스 배열로 구조분해 할당
+      const { index, value, title, name } = data[i];
+      li_01.innerHTML = index;
+      li_02.innerHTML = value;
+      li_03.innerHTML = title
+      li_04.innerHTML = name;
+  
+
+      deleteBtn.onclick = () => deleteHandler(i);
+      updateBtn.onclick = () => updateHandler(i);
+      document.querySelector('.content').append(ul);
+
+    }
+  }
+  const init = () => {
+    if(localStorage.getItem('comment')){
+        const _data = JSON.parse(localStorage.getItem('comment'));
+        data = _data;
+    }
+    rander();
+}
+init();
+
+
 })
+
