@@ -123,9 +123,9 @@ git push --force --all # 모든 수정내용을 강제로 푸쉬
 git stash # 메모리상에 작업내용 저장 index로 저장
 git stash pop # 마지막 작업내용 다시 메모리에서 가져오기
 ```
-## pr
+## pr(pull request)
 > 다른 저장소의 내용을 fork를 해서 본인의 저장소로 가져온뒤
-> 해당 저장소에 push를 하게되면 full reqeust 요청 내가 수정한 내용을 반영해달라
+> 해당 저장소에 push를 하게되면 pull reqeust 요청 내가 수정한 내용을 반영해달라
 > fork해온 저장소를 원본 저장소와 동기화 요청
 
 ## 페이지 3 개만 들어서
