@@ -132,164 +132,207 @@ function typing() {
 let typingInterval = setInterval(typing, 200);
 
 
-// ---------------- 게시판 버튼을 눌렀을 때 --------// 
 document.querySelector('.post-btn').addEventListener('click', () => {
 
-    // 모달창 생성
-    const modal = document.createElement("div");
-    modal.classList.add("modal");
+  // 모달창 생성
+  const modal = document.createElement("div");
+  modal.classList.add("modal");
 
-    // 모달 내용 생성
-    const modalContent = document.createElement("div");
-    modalContent.classList.add("modal-content");
+  // 모달 내용 생성
+  const modalContent = document.createElement("div");
+  modalContent.classList.add("modal-content");
 
-    // 헤더바 요소 생성
-    const headerbar = document.createElement("div");
-    headerbar.classList.add("header-bar");
-    headerbar.innerText = "";
+  // 헤더바 요소 생성
+  const headerbar = document.createElement("div");
+  headerbar.classList.add("header-bar");
+  headerbar.innerText = "";
 
-    // 왼쪽에는 이미지 영역 생성
-    const leftSection = document.createElement("div");
-    leftSection.classList.add("left-section");
-    
-    // 오른쪽은 콘텐츠 영역 생성
-    const rightSection = document.createElement("div");
-    rightSection.classList.add("right-section");
+  // 왼쪽에는 이미지 영역 생성
+  const leftSection = document.createElement("div");
+  leftSection.classList.add("left-section");
 
-    // 닫기 버튼 생성
-    const closeBtn = document.createElement("span");
-    closeBtn.classList.add("close-btn");
-    closeBtn.innerHTML = "X";
+  // 오른쪽은 콘텐츠 영역 생성
+  const rightSection = document.createElement("div");
+  rightSection.classList.add("right-section");
 
-    closeBtn.onclick = () => {
-        document.body.removeChild(modal);
-    }
-   
-    const image_tag = document.createElement("img");
-    image_tag.classList.add("image");
-    image_tag.innerHTML = "";
+  // 닫기 버튼 생성
+  const closeBtn = document.createElement("span");
+  closeBtn.classList.add("close-btn");
+  closeBtn.innerHTML = "X";
 
-    // 댓글창의 영역을 생성
-    const commentSection = document.createElement("div");
-    commentSection.classList.add("comment-section");
-    
-    const commentDiv = document.createElement("div");
-    commentDiv.classList.add("comment-div");
-
-    // 이모티콘 요소 div 생성
-    const emojiDiv = document.createElement("div");
-    emojiDiv.classList.add("emojidiv");
-    
-    const emoji = document.createElement("img");
-    emoji.classList.add("emoji");
-    emoji.innerHTML = "";
-
-
-    // 댓글을 입력하는 요소 생성
-    const commentTextarea = document.createElement("textarea");
-    commentTextarea.classList.add("comment-textarea");
-    commentTextarea.placeholder = "댓글 달기..."
-    
-    const commentButtonDiv = document.createElement("div");
-    commentButtonDiv.classList.add("commenButtonDiv");
-
-    // 댓글 등록 버튼 생성
-    const commentButton = document.createElement("button");
-    commentButton.classList.add("comment-button");
-    commentButton.innerText= "게시";
-
-
-    
-    leftSection.appendChild(image_tag);
-    rightSection.appendChild(headerbar);
-    rightSection.appendChild(commentSection); 
-    rightSection.appendChild(commentDiv);
-    
-    commentDiv.appendChild(emojiDiv);
-    commentDiv.appendChild(commentTextarea);
-    commentDiv.appendChild(commentButton);
-    commentDiv.appendChild(commentButtonDiv);
-
-    commentButtonDiv.appendChild(commentButton);
-   
-    emojiDiv.appendChild(emoji);
-
-    modalContent.appendChild(leftSection);
-    modalContent.appendChild(rightSection);
-    modalContent.appendChild(closeBtn);
-    
-    modal.appendChild(modalContent);
-    document.body.appendChild(modal);
-
-    // Create 글을 추가하는 코드 // 
-    let data = [];
-
-    class Comment {
-        constructor(_index, _value, _title, _name) {
-            this.index = _index;
-            this.value = _value;
-            this.title = _title
-            this.name = _name;
-        }
-    }
-    // 게시 버튼을 클릭했을 때 이벤트 함수
-    commentButton.addEventListener("click", () => {
-    
-        const comment = new Comment(
-            data.length + 1, // index 번호
-            commentTextarea.value, // 글을 입력한 내용
-            "자바스크립트", // 제목 
-            "이수호" // 작성자 이름
- );
-     data.push(comment);
-        const content_JSON = JSON.stringify(data);
-        localStorage.setItem("comment", content_JSON);
-
-    rander();
-    commentTextarea.value = "";
-  })
-
-  // READ 
-  const rander = () => {
-    document.querySelector('.comment-section').innerHTML = "";
-    for(let i = 0;  i < data.length; i++) {
-      const ul = document.createElement("ul");
-      const li_01 = document.createElement("li");
-      const li_02 = document.createElement("li");
-      const li_03 = document.createElement("li");
-      const li_04 = document.createElement("li");
-      const li_05 = document.createElement("li");
-      const deleteBtn = document.createElement("button");
-      deleteBtn.classList.add("deleteBtn");
-      deleteBtn.innerText = "삭제";
-      const updateBtn = document.createElement("button");
-      updateBtn.classList.add("updateBtn");
-      updateBtn.innerText = "수정";
-      ul.append(li_01, li_02, li_03, li_04, li_05);
-      li_05.append(deleteBtn,updateBtn);
-      // 키 값을 인덱스 배열로 구조분해 할당
-      const { index, value, title, name } = data[i];
-      li_01.innerHTML = index;
-      li_02.innerHTML = value;
-      li_03.innerHTML = title;
-      li_04.innerHTML = name;
-  
-
-      deleteBtn.onclick = () => deleteHandler(i);
-      updateBtn.onclick = () => updateHandler(i);
-      document.querySelector('.comment-section').append(ul);
-
-    }
+  closeBtn.onclick = () => {
+      document.body.removeChild(modal);
   }
+
+  const image_tag = document.createElement("img");
+  image_tag.classList.add("image");
+  image_tag.innerHTML = "";
+
+  // 댓글창의 영역을 생성
+  const commentSection = document.createElement("div");
+  commentSection.classList.add("comment-section");
+
+  const commentDiv = document.createElement("div");
+  commentDiv.classList.add("comment-div");
+
+  // 이모티콘 요소 div 생성
+  const emojiDiv = document.createElement("div");
+  emojiDiv.classList.add("emojidiv");
+
+  const emoji = document.createElement("img");
+  emoji.classList.add("emoji");
+  emoji.innerHTML = "";
+
+  // 댓글을 입력하는 요소 생성
+  const commentTextarea = document.createElement("textarea");
+  commentTextarea.classList.add("comment-textarea");
+  commentTextarea.placeholder = "댓글 달기...";
+
+  const commentButtonDiv = document.createElement("div");
+  commentButtonDiv.classList.add("commenButtonDiv");
+
+  // 댓글 등록 버튼 생성
+  const commentButton = document.createElement("button");
+  commentButton.classList.add("comment-button");
+  commentButton.innerText = "게시";
+
+  leftSection.appendChild(image_tag);
+  rightSection.appendChild(headerbar);
+  rightSection.appendChild(commentSection);
+  rightSection.appendChild(commentDiv);
+
+  commentDiv.appendChild(emojiDiv);
+  commentDiv.appendChild(commentTextarea);
+  commentDiv.appendChild(commentButton);
+  commentDiv.appendChild(commentButtonDiv);
+
+  commentButtonDiv.appendChild(commentButton);
+
+  emojiDiv.appendChild(emoji);
+
+  modalContent.appendChild(leftSection);
+  modalContent.appendChild(rightSection);
+  modalContent.appendChild(closeBtn);
+
+  modal.appendChild(modalContent);
+  document.body.appendChild(modal);
+
+  // Create 글을 추가하는 코드 // 
+  let data = [];
+
+  class Comment {
+      constructor(_index, _value, _title, _name) {
+          this.index = _index;
+          this.value = _value;
+          this.title = _title;
+          this.name = _name;
+      }
+  }
+
+
+  // 게시 버튼을 클릭했을 때 이벤트 함수
+  // ---------------- Create 게시물 생성 이벤트  ---------------- 
+  commentButton.addEventListener("click", () => {
+      const comment = new Comment(
+          data.length + 1, // index 번호
+          commentTextarea.value, // 글을 입력한 내용
+          "자바스크립트", // 제목 
+          "이수호" // 작성자 이름
+      );
+      data.push(comment);
+      const content_JSON = JSON.stringify(data);
+      localStorage.setItem("comment", content_JSON);
+
+      render();
+      commentTextarea.value = "";
+  });
+
+  // --------- READ 렌더링 할때마다 화면에 나타나는 요소 제어 ------ //
+  const render = () => {
+      document.querySelector('.comment-section').innerHTML = "";
+      for (let i = 0; i < data.length; i++) {
+          const ul = document.createElement("ul");
+          const li_01 = document.createElement("li");
+          const li_02 = document.createElement("li");
+          const li_03 = document.createElement("li");
+          const li_04 = document.createElement("li");
+          const li_05 = document.createElement("li");
+          const deleteBtn = document.createElement("button");
+          deleteBtn.classList.add("deleteBtn");
+          deleteBtn.innerText = "삭제";
+          const updateBtn = document.createElement("button");
+          updateBtn.classList.add("updateBtn");
+          updateBtn.innerText = "수정";
+          ul.append(li_01, li_02, li_03, li_04, li_05);
+          li_05.append(deleteBtn, updateBtn);
+          ul.classList.add("comment-ul");
+          // 키 값을 인덱스 배열로 구조분해 할당
+          const { index, value, title, name } = data[i];
+          li_01.innerHTML = index;
+          li_02.innerHTML = value;
+          li_03.innerHTML = title;
+          li_04.innerHTML = name;
+
+          // 삭제 버튼 클릭 시 확인 팝업 띄우기
+          deleteBtn.onclick = () => deleteHandler(i);
+          updateBtn.onclick = () => updateHandler(i);
+          document.querySelector('.comment-section').append(ul);
+      }
+  }
+
   const init = () => {
-    if(localStorage.getItem('comment')){
-        const _data = JSON.parse(localStorage.getItem('comment'));
-        data = _data;
-    }
-    rander();
-}
-init();
+      if (localStorage.getItem('comment')) {
+          const _data = JSON.parse(localStorage.getItem('comment'));
+          data = _data;
+      }
+      render();
+  }
+  init();
 
+  // ------------- Delte 삭제 처리 이벤트 ------------------- //
+  const deleteHandler = (index) => {
+    // 삭제를 다시 확인하는 팝업 생성
+    const DeleteModal = document.createElement("div");
+    DeleteModal.classList.add("Delete-modal");
 
+    const DeletemodalContent = document.createElement("div");
+    DeletemodalContent.classList.add("Deletemodal-content");
+
+    const message = document.createElement("p");
+    message.innerText = "정말로 삭제할까요?";
+
+    const buttonBox = document.createElement("div");
+    buttonBox.classList.add("button-Box");
+
+    const checkBtn = document.createElement("button");
+    checkBtn.classList.add("check-btn");
+    checkBtn.innerText = "확인";
+
+    const cancelBtn = document.createElement("button");
+    cancelBtn.classList.add("cancel-btn");
+    cancelBtn.innerText = "취소";
+
+    buttonBox.appendChild(checkBtn);
+    buttonBox.appendChild(cancelBtn);
+
+    DeletemodalContent.appendChild(message);
+    DeletemodalContent.appendChild(buttonBox);
+    DeleteModal.appendChild(DeletemodalContent);
+
+    document.body.appendChild(DeleteModal);
+
+    // 확인 버튼 클릭 시 삭제 처리 이벤트
+    checkBtn.onclick = () => {
+        data.splice(index, 1); // 해당 인덱스의 데이터 삭제
+        localStorage.setItem("comment", JSON.stringify(data)); // 로컬 스토리지에 저장
+        render(); // 댓글 목록 다시 렌더링
+        document.body.removeChild(DeleteModal); // 팝업 닫기
+    };
+
+    // 취소 버튼 클릭 시 팝업을 닫는 이벤트
+    cancelBtn.onclick = () => {
+        document.body.removeChild(DeleteModal); // 팝업 닫기
+    };
+  };
 })
 

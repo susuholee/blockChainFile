@@ -312,6 +312,33 @@
     
 }
 
+/* 댓글 박스 스타일 */
+.comment-ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0; 
+    animation: fadeInSlideUp 0.5s ease-out forwards; 
+}
+
+@keyframes fadeInSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .emoji {
     padding: 30px;
     background-image: url("./images/emoji.jpg");
@@ -676,6 +703,91 @@ ul, li {
     background-color: black;
 }
 
+/* 삭제 팝업 메시지 */
+.Delete-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color:#FEDA77;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    z-index: 1001;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    font-family:"Gyeonggi_Batang_Regular";
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* 팝업 내용 스타일 */
+.Deletemodal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 댓글 내용 스타일 */
+.Delete-modal p {
+    font-size: 18px;
+    color: #000000;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+/* 버튼 박스  스타일 */
+.button-Box {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* 확인 버튼 , 취소 버튼 스타일 */
+.check-btn,
+.cancel-btn {
+    padding: 12px 24px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.check-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+
+.check-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.cancel-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+}
+
+.cancel-btn:hover {
+    background-color: #e53935;
+    transform: scale(1.05);
+}
+
+
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -45%);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
 
   @keyframes colorChange {   
     0% {
