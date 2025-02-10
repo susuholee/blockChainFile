@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="">검색할 사용자의 이름</label>
+    <input type="text"  id="user_search">
+    <button id="next_btn"> 페이지 이동 </button>
+</body>
+<script>
+    console.log(window.location);
+    // next_btn 을 클릭하면 발생하는 이벤트
+    next_btn.onclick = () => {
+        // 이 부분을 설명하면 새로운 페이지 index2.html로 이동하면서 user_search 입력 값을 name에 전달하고, age 에는 20을 전달한다 
+        window.location.href=`./index2.html?name=${user_search.value}&age=20`;
+        // 페이지를 get 방식으로 요청한다. href의 값에 따라 페이지를 이동한다. 
+    }
+</script>
+</html>

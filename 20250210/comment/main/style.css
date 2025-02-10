@@ -1,0 +1,42 @@
+#content_wrap ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    cursor: pointer;
+    width: max-content;
+    padding: 0;
+    box-sizing: border-box;
+    border: 1px solid;
+}
+
+#content_wrap ul:hover {
+    border : 1px solid greenyellow;
+}
+
+#content_wrap li {
+    width: 100px;
+    border: 1px solid;
+    box-sizing: border-box;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: nowrap;
+}
+
+#pagination {
+    display: flex;
+}
+
+#pagination span {
+    display: block;
+    padding: 10px;
+    border: 1px solid;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+#pagination span:hover {
+   background-color: coral;
+   color : black;
+}

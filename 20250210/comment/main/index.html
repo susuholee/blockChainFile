@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div>
+        <div>
+            <div>로그인한 유저는? : <span id="login_user"></span></div>
+            <label for="">아이디</label>
+            <input type="text" id="login_input">
+            <button id="login_btn">로그인</button>
+            <button id="logout_btn">로그아웃</button>
+        </div>
+        <h1>게시판</h1>
+        <form id="form_wrap">
+            <label for="">검색창</label><br>
+            <input type="text" id="search_input"><br>
+            <label for="">글 제목</label> <br>
+            <input type="text" name="title"> <br>
+            <label for="">글 내용</label> <br>
+            <textarea name="content"></textarea> <br>
+            <button>글 입력</button>
+        </form>
+        <div id="content_wrap"></div>
+        <div id="pagination"></div>
+    </div>
+</body>
+<script src="./index.js"></script>
+</html>
