@@ -29,7 +29,6 @@ class Comment {
     }
 }
 
-
 // title , cotnent 매개변수를 받아서 입력한 값의 빈 공백을 빼고
 const addComment = (title, content) => {
     if(title.trim() === "" || content.trim() === "") return ; // 글 입력를 못하게 한다.
