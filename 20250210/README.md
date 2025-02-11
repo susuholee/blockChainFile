@@ -1,4 +1,4 @@
-# 쿼리 스트링, 쿠키, 페이지네이션
+# 쿼리 스트링, replace(), map(), split(),  쿠키, 페이지네이션
 
 ## 쿼리 스트링
 > 웹을 사용하면서 검색어 관련된 값을 다루기 위해서 URL에 추가적인 데이터를 전달하는 방식중에 하나.
@@ -27,6 +27,56 @@
 window.location === 쿼리스트링 문자열이 포함되어있다.
 window.location.search
 ```
+
+## replace() 메서드 
+> 문자열에서 특정 글자를 찾아서 다른 글자로 변경할 때 사용하는 메서드
+> replace 메서드는 두 가지 인수를 받는데
+1. 첫 번째 인자 : 찾을값 (searchValue)
+2. 두 번째 인자 : 변경할 값 (replaceValue)
+
+## replace() 문법
+> 문자열.replace(찾을값, 변경할 값);
+
+```js
+let text = "나는 자바스크립트를 좋아합니다.";
+let newText = text.replace("자바스크립트", "Javascript");
+
+console.log(newText); // "나는 javascript를 좋아합니다."
+console.log(text);    // "나는 자바스크립트를 좋아합니다."
+```
+
+## map() 메서드
+> 배열의 모든 요소를 하나씩 가져와서 콜백함수 를 적용한 후 그 결과로 새로운 배열을 만드는 메서드
+
+
+##  array.map(callbackFunction(currenValue, index, array))
+1. currenValue : 
+
+## map() 문법
+1. 배열.map(콜백함수);
+2. 배열.map((요소, 인덱스, 배열) => { 변형된 값 반환 });
+
+```js
+let numbers = [1, 2, 3];
+let doubled = numbers.map(num => num * 2);
+console.log(doubled); // [2, 4, 6]를 출력
+```
+### split() 메서드
+> 문자열을 특정 기준으로 잘라서 배열로 만들어주는 메서드
+> 문자열을 원하는 단위로 나눌 때 사용
+
+## split() 문법
+> 문자열.split(구분자);
+> 반환값 : Array[배열]
+
+```js
+let text = "사과랑바나나랑포도";
+let fruits = text.split(",");
+console.log(fruits); // ["사과", "바나나", "포도"]
+
+```
+-----------------------------------------------------------
+
 ### 페이지네이션
 > 글의 갯수가 많고 해당 갯수만큼만 글을 보여주고 나머지 글은 다음 페이지에서 보여줘야 할 경우
 > 페이지의 번호를 생성하고 보여줄 페이지의 갯수를 정해서 유저에게 글의 갯수만큼만 보여주게 하는것.
