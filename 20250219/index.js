@@ -15,7 +15,7 @@ const server = net.createServer((client) =>{
 
     console.log(client);
     // 클라이언트가 서버에 접속을 콜백함수 실행
-    // 요청의 데이터르 받으면
+    // 요청의 데이터를 받으면
     // 바이너리 데이터 형식의 데이터를 받는다. (2진수)
     client.setEncoding('utf-8');
     // 데이터의 설명의 부분이 요청 헤더에 포함된다.
