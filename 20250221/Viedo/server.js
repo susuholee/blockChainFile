@@ -29,7 +29,7 @@ console.log(mypath);
 // 서버 객체
 const server = http.createServer((req, res) => {
     // GET / HTTP/1.1
-    if(req.url == "/video") {
+    if(req.url == "/Viedo") {
         // statSync () : 파일의 전체 크기
         // 왜 사용하나? -> 파일이 어느정도 전송되었는지 확인
         const state = fs.statSync(mypath);
@@ -67,12 +67,15 @@ const server = http.createServer((req, res) => {
             // 클라이언트에서 range 요청 헤더에 내용을 포함해서 보내면 컨텐츠를 처리할때 상태코드를 206으로 주면
             // 리소스를 일부분씩 제공하고 있다. 라는 성공 코드드
             res.writeHead(206, {
-                "Content-Length" : chunkSize,
-                "Content-Type" : "video/mp4",
-                "Accept-ranges" : "bytes",
-                "Content-range" : `bytes ${start} - ${end}/${fileSzie}`
+                "Content-Length" : chunkSize, // 응답을 할때 전달하는 데이터의 길이를 지금은 작성한 내용이 청크 단위로 데이터를 제공한다
+                "Content-Type" : "video/mp4", // 제공하는 컨텐츠의 타입
+                "accept-ranges" : "bytes", // 클라이언트에게 요청된 범위의 데이터를 어떤 용량으로 지원하는지.
+                "Content-range" : `bytes ${start}-${end}/${fileSzie}` // 제공하는 데이터의 범위를 표현
 
             })
+            console.log(`전송 범위 : start : ${start}, end : ${end}`);
+            // 부분 컨텐츠 제공
+            videoStream.pipe(res);
         } else {
             // 한번에 영상을 받을때 까지 처리하는 방식
             const videoStream = fs.createReadStream(mypath);
@@ -81,7 +84,6 @@ const server = http.createServer((req, res) => {
                 "Content-Type" : "video/mp4"
             })
 
-            videoStream.pipe(res);
         }
     }
 })
