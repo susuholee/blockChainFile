@@ -38,6 +38,8 @@ const server = net.createServer((client) => {
         } else if(req.header.startLine.url === "/boardData") {
             console.log("/boardData 경로로 요청 받았고 게시글 데이터 응답")
             res.notFound("에러 페이지");
+        } else if(req.header.startLine.url === "/css/style.css") {
+            res.notFound("에러 페이지")
         }
         // console.log(req);
     })

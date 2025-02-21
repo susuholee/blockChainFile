@@ -29,7 +29,7 @@ console.log(mypath);
 // 서버 객체
 const server = http.createServer((req, res) => {
     // GET / HTTP/1.1
-    if(req.url == "/Viedo") {
+    if(req.url === "/video") {
         // statSync () : 파일의 전체 크기
         // 왜 사용하나? -> 파일이 어느정도 전송되었는지 확인
         const state = fs.statSync(mypath);
@@ -55,7 +55,7 @@ const server = http.createServer((req, res) => {
             const end = progress[1] ?  parseInt(progress[1]) : fileSzie - 1;
             
             // 청크 크기
-            const chunkSize = 3 * 1024; // 3KB
+            const chunkSize = 10 * 1024; // 3KB
 
             // 비디오 스트림
             // 청크 단위씩 잘라서 가져온다

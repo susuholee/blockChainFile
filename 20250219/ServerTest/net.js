@@ -4,13 +4,13 @@ const net = require('net');
 
 
 // 포트 번호를 정의하는 Port 선언 
-const Port = 8080;
+const Port = 3000;
 
 
 // 서버 객체 생성
 const server = net.createServer((user) => {
-    user.setEncoding("utf-8");
     console.log(user);
+    user.setEncoding("utf-8");
 
     // 클라이언트가 요청 메시지를 전송했을 때 콜백함수가 실행
     user.on('data', (data) => {
@@ -28,10 +28,10 @@ const server = net.createServer((user) => {
             margin: 0 auto;
             padding: 0;
         }
-        .container {
+        .total {
             width: 100%;
             height: 100vh;
-            background-image: url("https://cdn.thingiverse.com/assets/3b/20/7b/5a/5e/large_display_download__3__enhanced-removebg-preview.png");
+            background-color: aqua;
         }
     </style>
 </head>
@@ -43,12 +43,11 @@ const server = net.createServer((user) => {
 </html>`;
 
         // 요청 받을 부분을 작성
-        const resbody =  `HTTP/1.1  200 OK
-        Content-Type: text/html
-        Content-Length :  ${midddle.length}
-        
-        ${midddle}
-        `
+        const resbody =  `HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length : ${midddle.length}
+
+${midddle}`
 
         // 클라이언트가 응답 헤더를 받은 데이터를 화면에 출력
         user.write(resbody);
