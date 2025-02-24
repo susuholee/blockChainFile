@@ -39,9 +39,10 @@ const text = fs.mkdirSync("./Test");
 console.log(text);
 console.log("실행2");
 
+// fs.writeFile()
 // 폴더안에 파일을 추가
 // 첫 번째 매개변수는 Path 경로
-// 두 번째 매개변수로는 파일의 담.을 내용
+// 두 번째 매개변수는 파일의 담을 내용
 // 세 번째 매개변수는 콜백 함수
 const str = `
     안녕하세요
@@ -58,7 +59,7 @@ fs.writeFile("./Test/text.txt", str, (err) => {
 
 // 파일을 만드는 이유는 ? -> 데이터를 저장하고 불러오기 위해서
 // 파일을 읽어오기 (Read)
-// 첫 번째 매개변수 에러, 두 번째 매개변수 데이터를 받는다
+// 첫 번째 매개변수 에러, 두 번째 매개변수는 데이터를 받는다
 fs.readFile("./Test/text.txt", "utf8", (err, data) => {
     if(err) {
         console.log(err);
