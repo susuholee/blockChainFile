@@ -8,8 +8,17 @@
 </head>
 <body>
     <div class="container">
-        <button>로그인</button>
-        <button>게시판</button>
+        <button class="login-btn">로그인</button>
+        <button class="board-btn">게시판</button>
     </div>
 </body>
+<script>
+    document.querySelector('.login-btn').addEventListener('click', () => {
+        window.location.href = "../login/login.html"
+    })
+
+    document.querySelector('.board-btn').addEventListener('click', () => {
+        window.location.href = "../board/board.html"
+    })
+</script>
 </html>

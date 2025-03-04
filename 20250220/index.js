@@ -10,7 +10,7 @@ const buf3 = Buffer.from('안녕');
 
 // 빈공간의 버퍼에 내용을 넣은 것.
 buf.write("aaaasㅁㅋㅊㅋㅌㅋㅊㅋㅌㅊ");
-console.log(buf.toString());
+// console.log(buf.toString());
 
 let a = "A";
 let b = 12;
@@ -53,12 +53,12 @@ const binaryToString = (binary) => {
         // 아스키 코드가 아닐 때 는 정수로 추가
         if(String.fromCharCode(temp) == false) {
             result += temp;
-            console.log(result, "temp");
+            // console.log(result, "temp");
         }
         result += String.fromCharCode(temp); // result 에 temp를 변환
-        console.log(result, "result");
+        // console.log(result, "result");
 
     }
     return result;
 }
-console.log(binaryToString(c));
+// console.log(binaryToString(c));

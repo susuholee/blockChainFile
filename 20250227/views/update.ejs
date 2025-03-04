@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>수정 페이지</title>
+</head>
+<body>
+    <form action="/update?index=" method="post">
+
+        <label for="title">제목</label>
+        <input type="text" id="title" <%= title %>>
+
+        <label for="content">내용</label>
+        <textarea id="content"<%= content %>></textarea>
+
+        <button class="save_btn">저장</button>
+        <button>취소</button>
+    </form>
+</body>
+<script>
+   document.querySelector(".save_btn").onclick = (index) => {
+    location.href = `/?index=${index}`; 
+};
+</script>
+</html>

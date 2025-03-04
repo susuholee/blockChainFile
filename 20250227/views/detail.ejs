@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>글 번호 : <%= index %></div>
+    <div>제목 : <%= title %></div>
+    <div>내용 : <%= content %></div>
+    <button class="update_btn">글 수정</button>
+    <button class="delete_btn">글 삭제</button>
+</body>
+<script>
+     document.querySelector(".update_btn").onclick = (index) => {
+        location.href = `/update?index=<%= index -1%>`; 
+    };
+     document.querySelector(".delete_btn").onclick = () => {
+        location.href = `/delete?index=<%= index -1%>`;
+     }
+</script>
+</html>
