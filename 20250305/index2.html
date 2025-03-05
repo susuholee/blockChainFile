@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    async function myfn () {
+        const response = await fetch("/")
+        // response  안에는 상태 코드의 내용도 포함되는 응답의 내용을 가지고 있는 객체체
+        const data = await response.json();
+        return data;
+    }
+    
+    myfn().then((result) => {
+        console.log(result);
+    })
+</script>
+</html>
