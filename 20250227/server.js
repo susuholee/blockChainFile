@@ -97,22 +97,30 @@ app.get('/update', (req, res) => {
 
 
 // 업데이트 페이지 요청 부분
+// 업데이트 부분에서는 name으로 전달하여 수정
 app.post('/update', (req, res) => {
-    const _update = req.body.index;  // POST 요청에서는 body로 값을 받음
-    console.log("요청한 body의 인덱스", _update);
+    console.log("전체 req.body:", req.body);
     
- 
-    data[_update].title = req.body.title;
-    data[_update].content = req.body.content;
-    
-    // 수정된 데이터 확인
-    console.log("수정된 데이터", data[_update]);
+    const index = req.body.index;
+    console.log("index:", index);
+    console.log("title:", req.body.title);
+    console.log("content:", req.body.content);
 
-    // 브라우저에게 응답을 보낸다.
+    const newTitle = req.body.title;
+    const newContent = req.body.content;
+
+    console.log("data 배열 길이:", data.length);
+
+    if (data[index]) {
+        data[index].title = newTitle;
+        data[index].content = newContent;
+    }
+
+    // 수정된 콘솔 확인
+    console.log("수정된 데이터:", data[index]);
+    
     res.redirect('/');
-});
-
-
+})
 app.get('/delete', (req, res) => {
     const  index = req.query.index;
     console.log("선택된 query 인덱스: ",index);

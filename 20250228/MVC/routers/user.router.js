@@ -17,8 +17,8 @@ router.get('/signup', (req, res) => {
 // POST /login http/1.1
 // page 보여주는 역활이 아님 로직부분만 재요청 응답처리
 // 로그인 로직 작성
-router.post('/loginPost', (req, res) => {
-    login(req);
+router.post('/login', (req, res) => {
+    login(req, res);
     res.redirect("/login");
     // /login === 화면을 그리는게 맞고 get
     // post /loginPost === login 화면이 보인다,

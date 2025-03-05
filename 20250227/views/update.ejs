@@ -7,14 +7,15 @@
 </head>
 <body>
     <form action="/update?index=" method="post">
-
+        <input type="hidden" name="index" value="<%= index %>">
+        
         <label for="title">제목</label>
-        <input type="text" id="title" <%= title %>>
+        <input type="text" name="title" <%= title %>>
 
         <label for="content">내용</label>
-        <textarea id="content"<%= content %>></textarea>
+        <textarea id="content" name="content" <%= content %>></textarea>
 
-        <button class="save_btn">저장</button>
+        <button type="submit"  class="save_btn">저장</button>
         <button>취소</button>
     </form>
 </body>
