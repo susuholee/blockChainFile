@@ -24,5 +24,5 @@ app.use(express.urlencoded({extended : false}));
 app.use('/user', userRouter);
 
 app.listen(3000, () => {
-    console.log('server on~')
+    console.log('서버 작동중....')
 })

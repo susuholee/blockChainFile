@@ -8,15 +8,19 @@ console.dir(boardRouter);
 
 app.set("view engine", "ejs");
 
+
+app.use(express.urlencoded({extended : false}))
+
 // 쉽게 생각해서 
 // use에 추가한 경로와 뒤에 라우터 함수로 추가한 경로가
 // 경로가 합쳐진 형태로 요청을 받았을때 라고
-app.use("/board",boardRouter);
+app.use("/", boardRouter);
 
-app.get("/", (req, res) => {
-    res.render("main")
-})
+// app.get("/", (req, res) => {
+//     res.render("main");
+// })
+
 
 app.listen(3000, () => {
-    console.log("server on~");
+    console.log("서버 작동중..");
 })

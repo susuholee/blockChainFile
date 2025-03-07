@@ -8,7 +8,7 @@ const User = require('../models/user');
 
 const signup = (req, res) => {
     // 미들웨어로 body
-    const {uid, upw} = req.body;
+    const {username, uid, upw} = req.body;
     // 요청 객체 응답 객체를 받아서 처리하는 로직
     // 조건문 처리 로직
     // 유저가 회원가을 할수 있는지 체크
@@ -19,7 +19,7 @@ const signup = (req, res) => {
     // { uid: '123', upw: '456' }
     console.log(isSign); // ture false
     if(!isSign) {
-        User.signupUser(uid, upw);
+        User.signupUser(username,uid, upw);
         res.redirect('/user/login'); // 회원가입이 완료되면 로그인 페이지로
     } else {
         res.send("아이디가 중복됩니다.");
@@ -28,9 +28,9 @@ const signup = (req, res) => {
 
 const login = (req, res) => {
     // console.log(req.body)
-    const {uid, upw} = req.body;
+    const {username, uid, upw} = req.body;
     // []
-    const [isLogin] = User.selectUser(uid, upw); // [], [{uid : "soon", upw : "123"}]
+    const [isLogin] = User.selectUser(username, uid, upw); // [], [{uid : "soon", upw : "123"}]
     // undefined
     // {uid : "soon", upw : "123"}
     // uid랑 upw

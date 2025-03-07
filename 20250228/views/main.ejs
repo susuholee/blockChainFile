@@ -1,11 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><%= title %></title>
 </head>
 <body>
-    메인 페이지
+    <h1>메인 페이지</h1>
+
+    <ul>
+        <% if (board.length > 0) { %>
+            <% for (let i = 0; i < board.length; i++) { %>
+                <li>
+                    <h2><%= board[i].title %></h2>
+                </li>
+            <% } %>
+        <% } else { %>
+            <li>게시글이 없습니다.</li>
+        <% } %>
+    </ul>
+
+    <a href="/board">게시판 가기</a>
 </body>
 </html>
