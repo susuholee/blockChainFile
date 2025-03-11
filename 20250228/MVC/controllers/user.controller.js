@@ -28,17 +28,50 @@ const signup = (req, res) => {
 
 const login = (req, res) => {
     // console.log(req.body)
-    const {username, uid, upw} = req.body;
+    const {uid, upw} = req.body;
     // []
-    const [isLogin] = User.selectUser(username, uid, upw); // [], [{uid : "soon", upw : "123"}]
+    const [isLogin] = User.selectUser(uid, upw); // [], [{uid : "soon", upw : "123"}]
     // undefined
     // {uid : "soon", upw : "123"}
     // uid랑 upw
     if(isLogin) {
-        res.send('로그인 성공')
+        // 쿼리스트링으로 uid와 username을 보낸ㄴ다다
+        res.redirect(`/user/detail?uid=${isLogin.uid}&username=${isLogin.username}`);
     } else {
         res.send("아이디 비밀번호 확인하세요")
     }
+
 }
 
-module.exports = { signup, login };
+// 회원 정보 수정 로직
+const updateUser = (req, res) => {
+    const {uid, newUsername , newUpw} = req.body;
+    const [user]  = User.selectUserId(uid);
+    
+    // 조건문으로 user면 수정 아니면 "사용자를 찾을 수 없음" 요청 메세지를 보낸다.
+    if (user) {
+        user.username = newUsername;
+        user.upw = newUpw;
+        res.redirect('/user/login');
+        console.log(user);
+    } else {
+        res.send('사용자를 찾을 수 없습니다!!');
+    }
+}
+
+
+// 회원 정보 삭제 로직
+const deleteUser = (req, res) => {
+    const { uid } = req.body;
+    const [user] = User.selectUserId(uid);
+
+    if (user) {
+        User.deleteUserId(uid);
+        // 재요청으로 login 페이지로 보냄
+        res.redirect('/user/login');
+    } else {
+        res.send('사용자를 찾을 수 없습니다!!');
+    }
+};
+
+module.exports = { signup, login, updateUser, deleteUser};
