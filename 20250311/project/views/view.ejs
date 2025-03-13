@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('header') %>
+    뷰 페이지
+    <% for(let i = 0; i < data.length; i++) { %>
+        <div class="content-container">
+        <div>제목 : <%= data[i].title %></div>
+        <div>내용</div>
+        <textarea class="textcontent" disabled><%= data[i].content %></textarea>
+        </div>
+        <button class="fixed">수정하기</button>
+        <button class="deleted">삭제하기</button>
+    <% } %>
+</body>
+<script>
+const indextext = document.querySelectorAll('.content-container');
+console.log("출력된 모든 데이터", indextext);
+for (let i = 0; i < indextext.length; i++) {
+    indextext[i].addEventListener('click', () => {
+        location.href = `/detail?index=${i}`;
+    })
+}
+
+// 수정버튼을 누르면 해당하는 게시글의 인덱스 번호로 이동
+const fixedBtn = document.querySelectorAll('.fixed');
+console.log("수정버튼~~");
+for (let i = 0; i < fixedBtn.length; i++) {
+    fixedBtn[i].addEventListener('click', () => {
+        location.href = `/update?index=${i}`;
+     })
+    
+}
+
+// 삭제 버튼을 누르면 해당하는 게시글의 인덱스가 삭제
+const deleteBtn = document.querySelectorAll('.deleted');
+console.log("삭제버튼이야");
+for (let i = 0; i < deleteBtn.length; i++) {
+    deleteBtn[i].addEventListener('click', () => {
+
+
+    })
+}
+
+</script>
+</html>

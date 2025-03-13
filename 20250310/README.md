@@ -95,7 +95,7 @@ mysql -u root -p
 # pawword 입력 창
 
 # 경로를 시스템 환경변수로 지정 
-# C:\Program Files\MySQL\MySQL Server 8.0\bin
+# c
 # 이런식으로 설치된 소프트웨어의 경로
 # bin 폴더 경로에서 mysql 구문을 사용가능하다
 

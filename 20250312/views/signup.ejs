@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 페이지</title>
+</head>
+<body>
+    <%- include('header') %>
+    <form id="signup_form">
+        <label for="">닉네임</label>
+        <input type="text" name="">
+        <label for="">아이디</label>
+        <input type="text" name="uid">
+        <label for="">비밀번호</label>
+        <input type="text" name="upw">
+        <button>회원가입</button>
+    </form>
+</body>
+<script>
+    signup_form.onsubmit = async (e) => {
+        // e.preventDefault() : 새로고침이 발생하지 않도록 막고
+        e.preventDefault();
+        // 구조분해 할당으로 
+        // uid에 value 라는 키의 uidValue를 받고, upw에는 value 키의 upwValuef를 받는다.
+        const {uid : {value : uidValue} ,upw : {value : upwValue}} = e.target;
+        console.log(uidValue);
+        console.log(upwValue);
+        // 요청 주체가 클라이언트 듣고
+        const { data } = await axios.post('/signup', {uid : uidValue, upw : upwValue});
+        console.log(data)
+        if(data.state === 200) {
+            location.href = "/login";
+        } else {
+            alert('회원가입 실패!!');
+        }
+    }
+</script>
+</html>

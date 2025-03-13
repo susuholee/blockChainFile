@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="../public/create.css">
+</head>
+<body>
+    <%- include('header') %>
+    <form id="create_form">
+        <label for="">제목</label>
+        <input type="text" name="title">
+        <label for="">내용</label>
+        <textarea name="content"></textarea>
+        <button>글 추가</button>
+    </form>
+</body>
+<script>
+    create_form.onsubmit = async (e) => {
+        e.preventDefault(); // 새로고침 발생하지 않도록 막는다
+        const 
+        { title : { value : titleValue },
+          content : 
+            { value : contentValue} 
+    } = e.target;
+    // 입력한 값을 구조분해 할당해서 꺼낸다
+    
+    // 조건문으로 titleValue나 contentValue가 없으면 오류 페이지로 이동
+    if (!titleValue || !contentValue) {
+        location.href = "/error"; // 값이 없으면 error.ejs로 이동한다
+        return;
+    }
+    try {
+        
+        const {data} =  await axios.post("/create", {titleValue, contentValue});
+        // data에 {state : 200, message : "글 추가 완료"} 들어있다.
+
+        if(data.state === 200) {
+            location.href = "/view"; 
+        } else {
+            location.href = "/error";
+        }
+    } catch (error) {
+        location.href = "/error";
+    }
+}
+
+</script>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "20250313",
+  "version": "1.0.0",
+  "description": "> JSON Web Token 약어\r > JSON 형식의 데이터를 사용해서 유저의 데이터의 인증을 안전하게 토큰의 기번으로 사용하는 인증 방식",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2"
+  }
+}

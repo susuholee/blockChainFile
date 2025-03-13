@@ -22,8 +22,5 @@ const selectUserId = (uid) => {
     });
 }
 
-const deleteUserId = (uid) => {
-    console.log(uid);
-}
 
-module.exports = {signupUser, selectUser, selectUserId, deleteUserId};
+module.exports = {signupUser, selectUser, selectUserId};
