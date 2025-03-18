@@ -22,14 +22,15 @@
         const { title: { value: titleValue }, content: { value: contentValue } } = e.target;
         console.log(titleValue);
         console.log(contentValue);
-        
-        const { data } = await axios.put('/update', { title: titleValue, content: contentValue });
-        console.log(data);
-        
-        if (data.state === 200) {
-            location.href = "/view";
-        } else {
-            location.href = "/error";
+    
+        try {
+            const { data } = await axios.put(`/update?index=<%= data.id %>`, { title: titleValue, content: contentValue });
+            console.log(data);
+            if (data.state === 200) {
+                location.href = '/view';
+            } 
+        } catch (error) {
+            console.log("저장 중 오류가 발생했습니다:", error);
         }
     };
 </script>

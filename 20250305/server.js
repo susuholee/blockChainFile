@@ -13,6 +13,7 @@ app.get('/page', (req, res) => {
         res.send(data);
     }) 
 })
+
 app.get('/page2', (req, res) => {
     fs.readFile('./index2.html', 'utf-8', (err, data) => {
         if(err)  return res.send(err);
@@ -27,18 +28,6 @@ app.get('/page3', (req, res) => {
     }) 
 })
 
-// CRUD
-// Read
-app.get()
-
-// Create
-app.post()
-
-// update 
-app.put()
-
-// Delete
-app.delete()
 
 app.listen(3000, () => {
     console.log("서버 작동중...")

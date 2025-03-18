@@ -46,9 +46,6 @@ router.get('/update', async (req, res) =>{
 })
 
 
-router.get('/error', (req, res) => {
-    res.render('error');
-})
 
 router.post('/create' , async (req, res) => {
     try {
@@ -60,29 +57,44 @@ router.post('/create' , async (req, res) => {
     } catch (error) {
         res.json({state : 400, message : error}); 
     }
-    // 서버가 종료되지 않고 모니터링을 통해서 운영 배포 수정    
 })
 
 router.put('/update', async (req, res) => {
-    const boardIndex = req.query.index;  // URL에서 전달된 index 값을 받기
-    console.log("요청된 boardIndex야", boardIndex);  // boardIndex 값 확인
-
-    const { title, content } = req.body;  // body에서 title, content 받기
+    const  { title, content } = req.body;
+    const  { index } = req.query;
+    console.log(req.query);
+    console.log("수정할 게시글 index:", index);
+    console.log("수정할 제목:", title);
+    console.log("수정할 내용:", content);
 
     try {
-        await BoardUpdate(boardIndex, title, content);
-        res.status(200).send('게시글 수정 완료');
+        // boardIndex를 이용해 해당 데이터를 가져옴
+        const boardData = await getBoardIndex(index);  // 해당 게시글을 찾아온다.
+
+        // 만약 board 데이터가 없으면 오류 반환
+        if (!boardData) { 
+            return res.send("게시글을 찾을 수 없습니다.");
+        }
+
+        // 게시글 수정 처리
+        await BoardUpdate(index, title, content);
+
+        res.json({ state : 200, message : "게시글 수정 완료했어요~~"});
     } catch (error) {
-        res.status(500).send('게시글 수정 실패');
+        console.log("게시글 수정 중 오류 발생:", error);
+        res.json({ state: 400, message: "게시글 수정 중 오류가 발생했습니다." });
     }
 });
+
 // delete 요청으로 게시글이 삭제되면 재요청을 보내서 view 페이지로
 // DELETE 요청 처리
 router.delete('/delete', async (req, res) => {
-    const boardIndex = req.query.index;
-    console.log("삭제할 게시글의 index:", boardIndex);
-    // 데이터베이스에서 해당 게시글 삭제
-    await BoardDelete(boardIndex);
+    const { index }= req.query;
+    console.log("삭제할 게시글의 id:", index);
+   
+    await BoardDelete(index);
+
+    
 
 });
 

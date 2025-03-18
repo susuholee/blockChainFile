@@ -13,8 +13,14 @@
 </body>
 <script>
     const submitHandler = () => {
+        // 버튼의 onclick으로 인한 이벤트 발생
+        // 이벤트 핸들러로 인한 자바스크립트 호출
+        // 자바스크립트는  XMLHttpRequest 객체 생성하여 서버에게 요청을 보낸다
         let xhr = new XMLHttpRequest();
-    
+        console.log("뭐가 찍히니?",xhr);
+
+        // open() : 서버에 요청을 준비하는 메서드
+        // open('요청 메서드', URL, 비동기 처리 여부)
         xhr.open('GET', '/');
     
         // 요청이 완료가 되면
@@ -24,9 +30,13 @@
             // xhr.readyState : xml객체의 상태가 완료상태 인지 확인하고
             // 완료 상태는 4번
             if((xhr.readyState === 4) && (xhr.status == 200)){
+                // xhr.responseText :서버에서 요청한 본문의 데이터를 문자열 형식으로 반환
+                // data 변수에 할당하는데 문자열 형식을 JSON.parse로 자바스크립트 객체로 변환
                 const data =  JSON.parse(xhr.responseText);
                 console.log(data);
                 // data 안에는 [{title : "제목", content : "내용"}]
+                // for 문으로 반복문으로 순회하면서 
+                // 요소를 생성하고 각 요소의 innerHTML로 HTML 요소 추가
                 for (let i = 0; i < data.length; i++) {
                     const span1 = document.createElement('span');
                     const span2 = document.createElement('span');
@@ -34,13 +44,15 @@
                     span1.append(span2,span3);
                     span2.innerHTML = data[i].title;
                     span3.innerHTML = data[i].content;
-                    content.append(span1)
+                    content.append(span1);
                 }
             }
             // 응답이 완료되면 처리할 로직
         }
     
-        // 요청
+        // 서버에 실제로 요청하는데
+        // send() 매개변수에 전달한 것이 없으니
+        // GET 요청으로 서버에 전송
         xhr.send();
     }
 </script>

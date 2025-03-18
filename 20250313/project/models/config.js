@@ -1,3 +1,4 @@
+require('dotenv').config({path : '../.env'});
 const mysql2 = require('mysql2/promise');
 
 const connectPool = mysql2.createPool({
@@ -18,6 +19,7 @@ connectPool.getConnection((err)=>{
 const userTableInit = async () => {
     try {
         await connectPool.query('SELECT * FROM users');
+        console.log("테이블 있어")
     } catch (error) {
         console.log("테이블 없다")
         await connectPool.query('CREATE TABLE users(id INT AUTO_INCREMENT PRIMARY KEY, uid VARCHAR(10) NOT NULL, upw VARCHAR(128) NOT NULL, name VARCHAR(10), nick VARCHAR(10), imgpath VARCHAR(100) )')

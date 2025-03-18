@@ -40,18 +40,21 @@ exports.createBoardData =  async (title, content) => {
 // Board의 데이터를 가져오는 메서드
 exports.getBoardData = async () => {
    return await new Promise((res, rej) => {
-        mysqlConnect.query("SELECT * FROM board", (err, data) => {
+        mysqlConnect.query("SELECT * FROM board ", (err, data) => {
             if(err) return rej(err);
             res(data);
         })
     })
 }
 
+
+
+
 // Board의 데이터를 수정하는 메서드
 // title과 content로 매개변수로 전달
-exports.updateData = async (title, content, boardIndex) => {
+exports.updateData = async (title, content, id) => {
     return await new Promise((res, rej) => {
-        mysqlConnect.query("UPDATE board SET title=?, content=? WHERE id=?", [title, content, boardIndex], (err) =>{
+        mysqlConnect.query("UPDATE board SET title=?, content=? WHERE id=?", [title, content, id], (err) =>{
             if(err) return rej(err);
             res("게시글 수정완료")           
         })
@@ -60,14 +63,12 @@ exports.updateData = async (title, content, boardIndex) => {
 
 
 
-// DB에서 board 테이블의 해당 보드인덱스 삭제 함수
-exports.deleteData = async (boardIndex) => {
-    return new Promise((resolve, reject) => {
-        mysqlConnect.query('DELETE FROM board WHERE id = ?', [boardIndex], (err, data) => {
-            if (err) {
-                reject(err);
-            }
-            resolve(data);
+// DB에서 board 테이블의 해당 삭제 함수
+exports.deleteData = async (id) => {
+    return new Promise((res, rej) => {
+        mysqlConnect.query('DELETE FROM board WHERE id =?', [id], (err) => {
+            if (err) return rej(err);
+            res("게시글 삭제 완료")
         });
     });
 };

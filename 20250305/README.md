@@ -14,10 +14,14 @@
 
 ## 문법
 ```js
+// XMLHttpRequest 객체
+// 서버에 요청을 보내고, 그에 대한 응답을 받는 객체
 let xhr = new XMLHttpRequest();
 
 // 요청을 보내는 코드
-// xhr.open() : ('요청 메서드', 요청을 보낼 경로)
+// xhr.open() : ('요청 메서드', 요청을 보낼 경로, 비동기 처리 여부)
+// open() : 요청을 준비하는 메서드
+// open('요청 메서드', URL, 비동기 처리 여부)
 xhr.open('GET', 'http://127.0.0.1:3000/board')
 
 // 요청이 완료가 되면
@@ -27,7 +31,8 @@ xhr.onreadystatechange = () => {
     // xhr.readyState : xml객체의 상태가 완료상태 인지 확인하고
     // 완료 상태는 4번
     if((xhr.readyState === 4) && (xhr.status == 200)){
-        JSON.parse(xhr.responseText);
+        JSON.parse(xhr.responseText)
+        // 응답이 JSON 형식이라서 parse하여 자바스크립트 객체로 변환
     }
     // 응답이 완료되면 처리할 로직
 }
@@ -39,6 +44,8 @@ xhr.send();
 ### Fetch의 등장 
 > XMLhttpRequest의 단점이 많았고, 문제점은 promise 객체 기반의 비동기 처리를 사용해서 ajax의 단점을 극복
 > ajax는 콜백 함수의 기반이 많아서 코드의 하드코딩이 발생하고 콜백 지옥이 발생할 가능성이 높은 코드를 작성해야했다.
+
+## Fetch의 특징
 > Fetch는 promise의 기반으로 코드의 가독성이 증가하게되었다.
 > JSON의 파싱의 메서드를 축약 처리가 가능하다.
 > 코드의 내용을 작성할 때 이전보다 직관적인 코드를 작성할 수 있게 되었다.
@@ -54,14 +61,14 @@ fetch('http://127.0.0.1:3000/board').then((result) => {
 })
 
 async function myfh () {
-    const response = await fecth("http://127.0.0.1:3000/board")
-    // response  안에는 상태 코드의 내용도 포함되는 응답의 내용을 가지고 있는 객체체
+    const response = await fetch("http://127.0.0.1:3000/board")
+    // response  안에는 상태 코드의 내용도 포함되는 응답의 내용을 가지고 있는 객체
     const data = await response.json();
     return data;
 }
 
 async function myfh () {
-    const response = await fecth("http://127.0.0.1:3000/create", {
+    const response = await fetch("http://127.0.0.1:3000/create", {
         method : "POST",
         headers : {
             'Content-type' : "application/json"
@@ -69,7 +76,7 @@ async function myfh () {
         // JSON 문자열로 변환해서 body 응답을 보냄
         body : JSON.stringify({title : "제목", content : "내용"})
     })
-    // response  안에는 상태 코드의 내용도 포함되는 응답의 내용을 가지고 있는 객체체
+    // response  안에는 상태 코드의 내용도 포함되는 응답의 내용을 가지고 있는 객체
     const data = await response.json();
     return data;
 }
@@ -190,4 +197,4 @@ app.listen(3000, () => {
 > 클라이언트에서 메서드를 사용해서 서버에 실제 요청을 보내기 전에 한번 검증을 거처서 리소스를 안전하게
 전달하고 응답 받을 수 있는 것.
 > HTTP 레벨에서 동작, TCP랑은 별개로 TCP 요청은 이후에 진행된다.
-> 프리플라이트 요청은 단순 요청에서는 
+> 프리플라이트 요청은 단순 요청에서는 필요가 없다. get과 post 사전 검증은 단순 요청에서는 필요 없다.

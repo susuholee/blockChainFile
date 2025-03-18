@@ -5,8 +5,9 @@ const createBoard = (req) => {
     // body는app.use(express.urlencoded({extended : false})); 가 처리
     // file은 multer가 처리
     const {title, content} = req.body;
+    console.log("요청된 제목, 게시글", title, content)
     const { filename } = req.file;
-
+    console.log("저장된 파일이름",filename);
     const imgName = "http://localhost:3000/image/" + filename;
     create(title, content, imgName);
     // console.log(selectAll());

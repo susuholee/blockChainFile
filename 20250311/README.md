@@ -64,7 +64,7 @@ ALTER TABLE users ADD name VARCHAR(10) first;
 // 협업을 할때 모든 팀원에게 root 계정을 알려줄 순 없으니
 // 유저를 생성하고 권한을 부여해서 유저계정을 추가해서 데이터베이스 접근 권한을 주고 사용하자
 
-mysql -u root -p;
+c
 // 접속해서 유저 계정 생성
 // root 계정으로 접속해서 유저를 생성하고 권한부여
 
