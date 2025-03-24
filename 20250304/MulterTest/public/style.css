@@ -1,4 +1,39 @@
+@font-face {
+    font-family: 'Ownglyph_ParkDaHyun';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2411-3@1.0/Ownglyph_ParkDaHyun.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 * {
+    font-family: 'Ownglyph_ParkDaHyun';
     margin: 0;
     padding: 0;
+}
+
+body{
+    background: linear-gradient(45deg, skyblue, rgb(210, 205, 197));
+}
+
+
+li {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+li span {
+    font-size: 30px;
+    display: block;
+    width: 200px;
+    border: 1px solid;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+li span img {
+    height: 100px;
 }

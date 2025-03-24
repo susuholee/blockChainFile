@@ -21,6 +21,7 @@ router.get('/detail', (req, res) => {
     res.render('board_detail', {board})
 })
 
+
 // 기능 로직
 router.post('/upload', upload.single("myimage"), (req, res) => {
     // console.log(req.file)

@@ -49,6 +49,7 @@ CREATE TABLE user_order(
     name VARCHAR(20), 
     order_id VARCHAR(20),
     constraint fk_order_id FOREIGN KEY (order_id) REFERENCES user (id)
+    # fk_order_id 이라는 constraint 제약조건을 생성하고 user_orde테이블의  order_id 필드를 외래키로 설정하고 user 테이블의 id를 참조
     # 필드에서 제약조건으로 사용할 필드를 지정하고 외래키를 생성, REFERENCES 부모테이블의 어떤 키를 주시할거냐
 )
 
@@ -87,7 +88,7 @@ SELECT * FROM user_order;
 
 ### 관계성이 있는 테이블은 JOIN을 쓸만하지
 
-SELECT user.id AS user_id, user.name, user_order.id AS user_order_id, user_order.order_id FROM user LEFT JOIN user_order on user.id = user_order.order_id; WHERE user.id = "kim";
+SELECT user.id AS user_id, user.name, user_order.id AS user_order_id, user_order.order_id FROM user LEFT JOIN user_order on user.id = user_order.order_id WHERE user.id = "kim";
 
 ### 별칭
 

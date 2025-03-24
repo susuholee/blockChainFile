@@ -178,6 +178,7 @@ SELECT * FROM student LEFT JOIN student_class ON student.id = student_class.stud
 
 3. 테이블에 필요한 필드 설계
 > 필드들의 데이터타입을 어떻게 설계할지
+> 인덱스 설정
 
 4. 데이터베이스 생성
 > 관계성 확인

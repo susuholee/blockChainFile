@@ -4,17 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/public/coffee.css">
 </head>
 <body>
     <h1>내가 좋아하는 커피  업로드</h1>
     <form action="/coffee" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="index">
         <label for="">제목</label>
         <input type="text" name="title">
-        <label for="">내용</label>
-        <input type="text" name="content">
+        <label for="">메뉴</label>
+        <input type="text" name="menu">
         <label for="">이미지 업로드</label>
         <input type="file" name="image">
         <button>저장하기</button>
     </form>
 </body>
 </html>
+
+

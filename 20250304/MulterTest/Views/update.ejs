@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    수정 페이지~
+    <form action="/update" method="post" enctype="multipart/form-data">
+        <label for="">글 번호 : <%= coffee.index %></label>
+        <label for="">제목</label>
+        <input type="text" name="title"  value="<%= coffe.title %>">
+        <label for="">메뉴</label>
+        <input type="text" name="menu" value="<%= coffe.menu %>">
+        <label for="">이미지 업로드</label>
+        <input type="file" name="image">
+        <button>저장하기</button>
+    </form>
+</body>
+</html>

@@ -12,8 +12,13 @@ const app = express();
 // view engine에 'ejs'를 사용
 app.set('view engine', 'ejs'); 
 
+app.use(express.json());
+
 // public 경로를 정적으로 처리하는 미들웨어 추가
 app.use("/public", express.static(path.join(__dirname, "public")));
+
+// image 경로를 정적으로 처리하는 미들웨어 추가
+app.use("/image", express.static(path.join(__dirname, "Uploads")));
 
 // body(본문)의 내용을 파싱하겠다. 미들웨어 추가
 app.use(express.urlencoded({extended : false}));
