@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="/public/style.css">
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<ul class="header">
+    <li>
+        <a href="/">HOME</a>
+    </li>
+
+    <li class="is-login">
+        <a href="/user/login">로그인</a>
+    </li>
+
+    <li class="is-login">
+        <a href="/user/signup">회원가입</a>
+    </li>
+
+    <li class="is-category">
+        <a href="/admin/category">카테고리</a>
+    </li>
+
+    <li>
+        <a href="/board">게시판</a>
+    </li>
+
+    <li class="login_icon">
+        <button class="logout_Btn">로그아웃</button>
+        <div><span class="user_name"></span>님 안녕하세요~</div>
+    </li>
+</ul>
+<script>
+    const logout_Btn = document.querySelector('.logout_Btn');
+    logout_Btn.onclick = () => {
+        location.href = "/user/logout"
+    }
+     const verify = async () => {
+        // 로딩창 활성화
+        const { data } = await axios.get('/user/userVerify');
+        // 로딩창 비활성화
+        console.log("랄라라", data);
+
+        if(data.state !== 200) return;
+
+        const header = document.querySelector('.header');
+        console.log(header)
+        const header_li = header.querySelectorAll('.is-login');
+        const login_icon = document.querySelector('.login_icon');
+        const login_icon_name = login_icon.querySelector('.user_name');
+
+        header_li.forEach((el, index) => {
+            el.classList.add('display_none')
+        });
+
+        login_icon.classList.add('active');
+        login_icon_name.innerHTML = data.data.user.name;
+        if(data.data.user.grade === 2){
+            document.querySelector('.is-category').classList.add('active');
+        }
+    }
+    // verify 함수 호출 해주세요!
+    window.onload = verify;
+</script>

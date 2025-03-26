@@ -38,13 +38,20 @@ for (let i = 0; i < fixedBtn.length; i++) {
 }
 
 // 삭제 버튼을 누르면 해당하는 게시글의 인덱스가 삭제
-const deleteBtn = document.querySelectorAll('.deleted');
-console.log("삭제버튼이야");
-for (let i = 0; i < deleteBtn.length; i++) {
-    deleteBtn[i].addEventListener('click', () => {
-        
-    })
-}
+const deleted = document.querySelectorAll('.deleted')
+for (let i = 0; i < deleted.length; i++) {
+    deleted[i].addEventListener('click', async () => {
+        console.log("삭제할 게시글의 인덱스:", i);
 
+           try {
+                const { data } = await axios.delete(`/delete/<%= data.id %>`)
+                if(data.state === 200){
+                    location.href = "/view"
+                }
+           } catch (error) {
+                console.log(error)
+           }
+    });
+}
 </script>
 </html>

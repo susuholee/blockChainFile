@@ -89,13 +89,17 @@ router.put('/update', async (req, res) => {
 // delete 요청으로 게시글이 삭제되면 재요청을 보내서 view 페이지로
 // DELETE 요청 처리
 router.delete('/delete', async (req, res) => {
-    const { index }= req.query;
+    const { index } = req.query; // 삭제할 게시글의 index
     console.log("삭제할 게시글의 id:", index);
-   
-    await BoardDelete(index);
 
-    
-
+    try {
+        // 게시글 삭제 처리
+        const boardData = await BoardDelete(index);
+        // 삭제 성공 시 응답
+        res.json({ state: 200, message: "게시글 삭제 완료" });
+    } catch (error) {
+        console.log("게시글 삭제 중 오류 발생:", error);
+        res.json({ state: 404, message: "게시글 삭제 중 오류가 발생했습니다." });
+    }
 });
-
 module.exports = router;

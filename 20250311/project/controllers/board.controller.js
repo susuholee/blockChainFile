@@ -33,9 +33,6 @@ exports.BoardUpdate = async (id, title, content) => {
         return;
     }
 
-    // 게시글이 존재하면 수정
-    data[id].title = title;
-    data[id].content = content;
 
     try {
         await updateData(title, content, id);
@@ -61,7 +58,7 @@ exports.BoardDelete = async (id) => {
     try {
         // 해당 게시글 삭제
         await deleteData(id);
-        console.log("게시글 삭제 완료");
+        console.log(`게시글  id 번째 ${id} 삭제 완료`);
     } catch (error) {
         console.log("게시글 삭제 중 오류 발생:", error);
     }

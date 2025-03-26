@@ -62,7 +62,7 @@ CREATE USER 'myid'@'%' IDENTIFIED BY 'admin123!';
 ## IDENTIFIED BY 뒤에 admin123! 비밀번호
 
 ## 유저에게 데이터베이스 권한 부여
-GRANT ALL PRIVILEGES ON project.* TO 'myid'@'localhost';
+GRANT ALL PRIVILEGES ON project.* TO 'suho'@'localhost';
 ## ALL PRIVILEGES : 이건 모든 쿼리 접근을 허용하겠다.
 ## SELECT 나 INSERT 등 권한을 명시해서 사용하게 할 수도 있다.
 
