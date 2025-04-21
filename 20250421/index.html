@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>라액트 따라가기</title>
+</head>
+<body>
+    <!-- root라는 태그가 실제로 하나 존해한다 -->
+    <div id="root"></div>
+</body>
+<script>
+    // 리액트의 최초의 태그 선택
+    // 최초에 딱 한번 태그 선택을 한다.
+    const root = document.querySelector('#root');
+
+    // 우리가 사용하던 구조
+    const button  = document.createElement('button');
+    button.innerHTML = "logOut"
+
+    const buttonState = { content : "logOut"};
+    button.addEventListener('click', () => {
+        if(buttonState.content !== "logOut") {
+            buttonState.content = "logOut"
+            button.innerHTML = "logOut"
+        } else {
+            buttonState.content = "login"
+            button.innerHTML = "login"
+        }
+    })
+    // 리렌더링
+    root.append(button);
+</script>
+</html>

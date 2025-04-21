@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>라이브러리로만 리액트를 만들어보자</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- ES6  => ES5 jsx 문법도 -->
+    <!-- npx create react app -->
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<!-- text/babel 스크립트의 내용을 babel로 트랜스파일 하겠다. -->
+<script type="text/babel">
+    class LoginBtn extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                isLogin : false
+            }
+        }
+        render() {
+            let a = 0;
+            return <div>
+                <div>
+                    <button onClick={() => {this.setState(
+                        {isLogin : !this.state.isLogin
+
+                        })
+                        console.log(this.state.isLogin);
+                        // 상태를 변화하자마자 값을 사용할거야
+                        // 리액트의 꽃은 상태관리를 잘하기위해서는
+                        // 생명주기를 이해해야한다.
+                    }}>{this.state.isLogin ? "logout" : "login"}</button>
+                </div>
+                이건 일반 변수야 : {a}
+                <button onClick={()=> {a++; console.log(a)}}>증가 화면에 보이니?</button>
+            </div>
+        }
+    }
+    // 최초에 한번만 요소를 가져옴
+    const root = ReactDOM.createRoot(document.querySelector('#root'));
+    root.render(
+        <LoginBtn />
+    )
+</script>
+</html>
