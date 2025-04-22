@@ -1,0 +1,6 @@
+{
+    "plugins" : ["@babel/plugin-transform-modules-commonjs"] // 기본 설정
+    // CRA에서 호출해서 사용
+}
+// plugins : 사용할 플러그인 작성
+// @babel/plugin-transform-modules-commonjs : commonjs 형식의 모듈 시스템으로 변환해주는 플러그인

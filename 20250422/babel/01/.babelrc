@@ -1,0 +1,5 @@
+{
+    "presets" : ["@babel/preset-env"] // 기본 설정
+    // CRA에서 호출해서 사용
+}
+// presets : 자바스크립트 기능 또는 구문을 변환하는  babel의 플러그인을 사용할 수 있다.
