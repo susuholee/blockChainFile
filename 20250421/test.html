@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배경색 변경 컴포넌트 만들기</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+
+<script type="text/babel">
+    class BackgroundBtn extends React.Component {
+        constructor(props){
+            super(props);
+            this.state = { 
+                isBackground : false
+            }
+        }
+        
+        render() {
+            const background = this.state.isBackground ? "#FF0000" : "#FFE146";
+            const textColor = this.state.isBackground ? "#fff" : "000";
+            
+            return (
+                <div style={{
+                    backgroundColor : background,
+                    color: textColor,
+                    height : "100vh",
+                    display : "flex",
+                    justifyContent: "center", 
+                    alignItems: "center", 
+                    flexDirection: "column" 
+                }}>
+                    <h1>{this.state.isBackground ? "빨간색 배경" : "노란색 배경"}</h1> 
+                    <button onClick={() => {
+                        this.setState({isBackground : !this.state.isBackground})
+                    }}>
+                        {this.state.isBackground ? "노란색 배경" : "빨간색 배경"}
+                    </button>
+                    </div>
+            )
+        }
+    }
+    const root = ReactDOM.createRoot(document.querySelector('#root'));
+    root.render(
+        <BackgroundBtn />
+    )
+</script>
+</html>
