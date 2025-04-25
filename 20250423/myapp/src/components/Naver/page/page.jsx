@@ -7,9 +7,11 @@ class Page extends Component {
     render() {
         return (
             <>
+            <div className="wrap">
               <Header/>
                     <Login/>
               <Footer/>
+            </div>
             </>
         )
     }

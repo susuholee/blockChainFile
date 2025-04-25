@@ -7,6 +7,7 @@ class Header extends Component {
             <header className="header">
                 <div className="header_inner">
                     <a href="https://www.naver.com/">
+                        <h1 className="blind">NAVER</h1>
                     </a>
                     <div className="lang">
                         <select name="local_switch" title="언어선택" className="sel">
